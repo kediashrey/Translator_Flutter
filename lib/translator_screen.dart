@@ -86,16 +86,16 @@ class _TranslatorAppState extends State<TranslatorScreen> {
       appBar: AppBar(
         centerTitle: true,
         flexibleSpace: Container(
-            decoration: const BoxDecoration(color: Colors.black
+            decoration: const BoxDecoration(color: Colors.white
 
             )),
         title: const Text(
-          'Translator App',
+          '',
           style: TextStyle(
               color: Colors.blue, fontWeight: FontWeight.bold, fontSize: 28),
         ),
       ),
-      backgroundColor: const Color.fromARGB(00, 00,100, 88),//bg color badme change
+      backgroundColor: const Color.fromARGB(255, 255,255, 255),//bg color badme change
       body: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -160,9 +160,9 @@ class _TranslatorAppState extends State<TranslatorScreen> {
                 padding: const EdgeInsets.all(20),
                 margin: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                    color: Colors.blueGrey,
+                    color: Colors.blueGrey.withOpacity(0.01),
                     borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.indigoAccent)),
+                    border: Border.all(color: Colors.black)),
                 child: Form(
                   key: formkey,
                   child: TextFormField(
@@ -245,14 +245,14 @@ class _TranslatorAppState extends State<TranslatorScreen> {
                 padding: const EdgeInsets.all(20),
                 margin: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                    color: Colors.blueGrey.withOpacity(0.3),
+                    color: Colors.blueGrey.withOpacity(0.01),
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(color: Colors.black)),
                 child: Center(
                   child: SelectableText(
                     data,
                     style: const TextStyle(
-                        color: Colors.white,
+                        color: Colors.black,
                         fontSize: 20,
                         fontWeight: FontWeight.bold),
                   ),
@@ -262,12 +262,13 @@ class _TranslatorAppState extends State<TranslatorScreen> {
                   onPressed: translate,
                   style: ButtonStyle(
                       backgroundColor:
-                      MaterialStatePropertyAll(Colors.indigo.shade900),
-                      fixedSize: const MaterialStatePropertyAll(Size(300, 45))),
+                      WidgetStatePropertyAll(Colors.indigo.shade900),
+                      fixedSize: const WidgetStatePropertyAll(Size(300, 45))),
                   child:isloading?const SizedBox.square(
                     dimension: 20,
-                    child: CircularProgressIndicator(color: Colors.white,),
-                  ): const Text('Translate')),
+                    child: CircularProgressIndicator(color: Colors.black,),
+                  ): const Text('Translate',
+                      style: TextStyle(color: Colors.white,fontSize: 20)) ),
               const SizedBox(
                 height: 30,
               )
