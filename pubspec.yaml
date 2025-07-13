@@ -28,9 +28,11 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  lottie: ^2.7.0
   translator: ^1.0.3+1
   flutter:
     sdk: flutter
+
   http: ^1.2.1
   firebase_core: ^3.15.1
   firebase_auth: ^5.6.2
@@ -56,6 +58,11 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  assets:
+    - assets/translate.json
+    - assets/Login.json
+    - assets/signup.json
+    - assets/Laptop.json
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

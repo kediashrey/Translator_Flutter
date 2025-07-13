@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'login_screen.dart';
 import 'translator_screen.dart';
+import 'package:lottie/lottie.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -50,8 +51,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
           key: _formKey,
           child: Column(
             children: [
-              Image.network('https://miro.medium.com/v2/resize:fit:501/1*12kdDQ7R9YZaWrEnW4TUxw.png',
-              width: 500,),
+              Lottie.asset(
+                'assets/signup.json',
+                height: 370,
+                repeat: true,
+              ),
               SizedBox(height: 20),
               TextFormField(
                 decoration: InputDecoration(labelText: "Email", border: OutlineInputBorder(borderRadius: BorderRadius.circular(24))),

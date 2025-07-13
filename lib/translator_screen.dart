@@ -1,12 +1,15 @@
-
-// Make sure your Internet is Connected 
+// Make sure your Internet is Connected
 import 'dart:io';
-
+import 'package:lottie/lottie.dart';
+import 'package:untitled1/signup_screen.dart';
+import 'history_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:translator/translator.dart';
 
 class TranslatorScreen extends StatefulWidget {
   const TranslatorScreen({super.key});
+
 
   @override
   State<TranslatorScreen> createState() => _TranslatorAppState();
@@ -36,6 +39,8 @@ class _TranslatorAppState extends State<TranslatorScreen> {
     'it'
   ];
   final translator = GoogleTranslator();
+  List<Map<String, String>> _history = [];
+
   String from = 'en';
   String to = 'hi';
   String data = 'आप कैसे हैं?';
@@ -52,6 +57,8 @@ class _TranslatorAppState extends State<TranslatorScreen> {
             .translate(controller.text, from: from, to: to)
             .then((value) {
           data = value.text;
+          _history.add({'original': controller.text, 'translated': value.text});
+
           isloading = false;
           setState(() {});
           // print(value);
@@ -69,11 +76,29 @@ class _TranslatorAppState extends State<TranslatorScreen> {
     }
   }
 
+
   @override
   void dispose() {
     super.dispose();
     controller.dispose();
   }
+  void logout() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+
+      if (!mounted) return;
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => SignUpScreen()), // replace this with your login screen
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Logout failed: $e")),
+      );
+    }
+  }
+
   // @override
   // void initState() {
   //   super.initState();
@@ -85,8 +110,22 @@ class _TranslatorAppState extends State<TranslatorScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
+        actions: [
+          // Row(
+          //   children: [Text("Logout"),
+          //     IconButton(
+          //       icon: const Icon(Icons.logout, color: Colors.black),
+          //       onPressed: () {
+          //         Navigator.pop(context); // Go back to login/signup screen
+          //       },
+          //     ),
+          //
+          //   ],
+          // ),
+        ],
+        automaticallyImplyLeading: true,
         flexibleSpace: Container(
-            decoration: const BoxDecoration(color: Colors.white
+            decoration: const BoxDecoration(color: Colors.white,
 
             )),
         title: const Text(
@@ -95,6 +134,37 @@ class _TranslatorAppState extends State<TranslatorScreen> {
               color: Colors.blue, fontWeight: FontWeight.bold, fontSize: 28),
         ),
       ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(color: Colors.indigo),
+              child: Text('Menu', style: TextStyle(color: Colors.black, fontSize: 24)),
+            ),
+            ListTile(
+              leading: const Icon(Icons.history),
+              title: const Text('Translation History'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HistoryScreen(history: _history),
+                  ),
+                );
+              },
+            ),
+        Spacer(),
+        ListTile(
+             leading: Icon(Icons.logout),
+             title: Text('Logout'),
+             onTap: () {
+             Navigator.pop(context); // close drawer
+            logout();},)
+          ],
+        ),
+      ),
+
       backgroundColor: const Color.fromARGB(255, 255,255, 255),//bg color badme change
       body: SingleChildScrollView(
           child: Column(
@@ -269,9 +339,13 @@ class _TranslatorAppState extends State<TranslatorScreen> {
                     child: CircularProgressIndicator(color: Colors.black,),
                   ): const Text('Translate',
                       style: TextStyle(color: Colors.white,fontSize: 20)) ),
-              const SizedBox(
-                height: 30,
-              )
+              const SizedBox(height: 80),
+              Lottie.asset(
+                'assets/Laptop.json',
+                height: 180,
+                repeat: true,
+              ),
+
             ],
           )),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'translator_screen.dart';
+import 'package:lottie/lottie.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -48,7 +49,9 @@ class _LoginScreenState extends State<LoginScreen> {
           key: _formKey,
           child: Column(
             children: [
-              Image.network("https://media.istockphoto.com/id/490922474/vector/people-avatars-on-world-map-speech-bubbles-in-different-languages.jpg?s=612x612&w=0&k=20&c=zvrundg_Tn4eiqAC3R1Gy0qvazGXfVYMhPmJTznJbts="),
+              Lottie.asset('assets/Login.json',
+                height: 370,
+                repeat: true,),
               SizedBox(height: 20),
               TextFormField(
                 decoration: InputDecoration(labelText: "Email", border: OutlineInputBorder(borderRadius: BorderRadius.circular(24))),
