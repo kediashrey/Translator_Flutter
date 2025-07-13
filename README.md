@@ -1,22 +1,118 @@
 
+🌐 Flutter Translator App
 
-A new Flutter project.
+A simple Flutter app that allows users to translate text between multiple languages using LibreTranslate, supports voice input (speech-to-text), shows translation history, and includes Firebase authentication with logout functionality.
 
-HELLO IM SHREY KEDIA 2NDYEAR STUDENT AT NIT SILCHAR
-ITS A TRANSLATOR APP USING GOOGLE'S FREE API(LIMITED OPTIONS)
-ITS MADE WITH HELP OF DART AND FLUTTER KNOWLEDGE AND SOME CREATIVITY
-FIREBASE USED FOR SETTING UP LOGIN INFO
+## 📱 Features
+
+- 🔄 Translate text using [LibreTranslate API](https://libretranslate.com/)
+- 🧠 View translation history
+- 🔐 Firebase Authentication (logout supported)
+- 🌍 Supports multiple languages
+- 📦 Lottie animation for visual feedback
 
 
-## Getting Started
+## 🚀 Getting Started
 
-This project is a starting point for a Flutter application.
+### 🔧 Prerequisites
 
-A few resources to get you started if this is your first Flutter project:
+- Flutter SDK
+- Android Studio / VS Code
+- Firebase project (with authentication enabled)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+
+### 📦 Install Packages
+
+```bash
+flutter pub get
+```
+
+### 🔌 Configure Firebase
+
+1. Go to [Firebase Console](https://console.firebase.google.com/)
+
+2. Create a project
+
+3. Add Android/iOS apps
+
+4. Download `google-services.json` (Android) and/or `GoogleService-Info.plist` (iOS)
+
+5. Place it inside:
+
+   * `android/app/` → `google-services.json`
+   * `ios/Runner/` → `GoogleService-Info.plist`
+
+6. Add this to `android/build.gradle`:
+
+```gradle
+classpath 'com.google.gms:google-services:4.3.15'
+```
+
+7. And in `android/app/build.gradle.kts`:
+
+```kotlin
+apply(plugin = "com.google.gms.google-services")
+```
+
+---
+
+### 🏃 Run the App
+
+```bash
+flutter run
+```
+
+---
+
+## 🧪 Testing Translation
+
+* Type  your input
+* Select language to translate **From** and **To**
+* Tap **Translate**
+* View the translated result and check History
+
+---
+
+## 📂 Project Structure
+
+```
+lib/
+├── main.dart
+├── translator_screen.dart
+├── history_page.dart
+└── widgets/
+    └── (optional: custom UI widgets)
+```
+
+---
+
+## 📜 Dependencies
+
+```yaml
+dependencies:
+  flutter:
+    sdk: flutter
+  translator: ^0.1.7
+  firebase_core: ^3.0.0
+  firebase_auth: ^5.0.0
+  lottie: ^3.0.0
+```
+
+---
+
+## 🙌 Credits
+
+* [LibreTranslate](https://libretranslate.com/)
+* [Google Firebase](https://firebase.google.com/)
+* [Lottie](https://lottiefiles.com/)
+
+---
+
+## 🛡 License
+
+This project is licensed under the MIT License.
+
+---
+
