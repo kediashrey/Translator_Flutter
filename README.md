@@ -1,3 +1,6 @@
+APP DEMO:
+[App video](https://drive.google.com/file/d/1M3_WLTFDyCgTMtSY90rWZYzFiR7UsX2y/view?usp=drive_link)
+
 
 🌐 Flutter Translator App
 
